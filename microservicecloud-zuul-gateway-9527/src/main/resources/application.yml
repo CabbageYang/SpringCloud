@@ -1,0 +1,30 @@
+server:
+  port:
+    9527
+
+spring:
+  application:
+    name: microservicecloud-zuul-gataway #微服务名称
+
+eureka:
+  instance:
+    instance-id: gateway-9572.com
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+
+zuul:
+  ignored-services: microservicecloud-dept     #隐藏真实名称    "*" 隐藏所有的
+  routes:
+    mydept.serviceId: microservicecloud-dept   #真实名称     原路径访问：http://myzuul.com:9527/microservicecloud-dept/dept/get/1
+    mydept.path: /mydept/**                    #代理名称， 对面暴露     路由访问： http://myzuul.com:9527/mydept/dept/get/1
+  #多个用"*" ignored-services: "*"
+  #ignored-services: STUDY-SPRINGCLOUD-DEPT
+  prefix: /springcloud                         #设置统一公共资源
+
+info:
+  app.name: springcloud-study-zuul-gateway
+  company.name: www.gxs.com
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}

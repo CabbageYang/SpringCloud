@@ -1,0 +1,14 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name: microservicecloud-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:yrDreamer/microservicecloud-config.git  #Github 上面的git仓库名字
+          search-paths: application
+          username:  yrDreamer   #账号密码写真实的快一些我觉得，不使用也能访问有点慢
+          password:  yangrui1219yr  #密码
